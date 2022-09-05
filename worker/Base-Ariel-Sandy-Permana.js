@@ -3743,174 +3743,32 @@ ads(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
 }
 addCmd(command.slice(1), 1, commund)
 break
-case prefix+'vote': {
-if (isBan) return ads(mess.ban)
-if (!m.isGroup) return ads(mess.group)
-if (m.chat in vote) return ads(`_Masih ada vote di chat ini!_\n\n*${prefix}hapusvote* - untuk menghapus vote`)
-if (!args.join(" ")) return ads(`Masukkan Alasan Melakukan Vote, Example: *${command} Owner Ganteng*`)
-ads(`Vote dimulai!\n\n*${prefix}upvote* - untuk ya\n*${prefix}devote* - untuk tidak\n*${prefix}cekvote* - untuk mengecek vote\n*${prefix}hapusvote* - untuk menghapus vote`)
-vote[m.chat] = [args.join(" "), [], []]
-await sleep(1000)
-upvote = vote[m.chat][1]
-devote = vote[m.chat][2]
-teks_vote = `*「 VOTE 」*
-
-*Alasan:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-│
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-│
-│ 
-└────
-
-*${prefix}hapusvote* - untuk menghapus vote`
-let buttonsVote = [
-{buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-{buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
-]
-
-let buttonMessageVote = {
-image: log0,
-jpegThumbnail: thum,
-caption: teks_vote,
-footer: global.footer,
-buttons: buttonsVote,
-headerType: 1
-}
-sock.sendMessage(m.chat, buttonMessageVote)
-}
-addCmd(command.slice(1), 1, commund)
-break
-case prefix+'upvote': {
-if (isBan) return ads(mess.ban)
-if (!m.isGroup) return ads(mess.group)
-if (!(m.chat in vote)) return ads(`_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`)
-isVote = vote[m.chat][1].concat(vote[m.chat][2])
-wasVote = isVote.includes(m.sender)
-if (wasVote) return ads('Kamu Sudah Vote')
-vote[m.chat][1].push(m.sender)
-menvote = vote[m.chat][1].concat(vote[m.chat][2])
-teks_vote = `*「 VOTE 」*
-
-*Alasan:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}hapusvote* - untuk menghapus vote`
-let buttonsUpvote = [
-{buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-{buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
-]
-
-let buttonMessageUpvote = {
-image: log0,
-jpegThumbnail: thum,
-caption: teks_vote,
-footer: global.footer,
-buttons: buttonsUpvote,
-headerType: 1,
-mentions: menvote
-}
-sock.sendMessage(m.chat, buttonMessageUpvote)
-}
-addCmd(command.slice(1), 1, commund)
-break
-case prefix+'devote': {
-if (isBan) return ads(mess.ban)
-if (!m.isGroup) return ads(mess.group)
-if (!(m.chat in vote)) return ads(`_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`)
-isVote = vote[m.chat][1].concat(vote[m.chat][2])
-wasVote = isVote.includes(m.sender)
-if (wasVote) return ads('Kamu Sudah Vote')
-vote[m.chat][2].push(m.sender)
-menvote = vote[m.chat][1].concat(vote[m.chat][2])
-teks_vote = `*「 VOTE 」*
-
-*Alasan:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}hapusvote* - untuk menghapus vote`
-let buttonsDevote = [
-{buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-{buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
-]
-
-let buttonMessageDevote = {
-image: log0,
-jpegThumbnail: thum,
-caption: teks_vote,
-footer: global.footer,
-buttons: buttonsDevote,
-headerType: 1,
-mentions: menvote
-}
-sock.sendMessage(m.chat, buttonMessageDevote)
-}
-addCmd(command.slice(1), 1, commund)
-break
-case prefix+'cekvote': {
-if (isBan) return ads(mess.ban)
-if (!m.isGroup) return ads(mess.group)
-if (!(m.chat in vote)) return ads(`_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`)
-teks_vote = `*「 VOTE 」*
-
-*Alasan:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}hapusvote* - untuk menghapus vote
-
-
-©${sock.user.id}
-`
-sock.sendTextWithMentions(m.chat, teks_vote, m)
-}
-addCmd(command.slice(1), 1, commund)
+case prefix+'imagenobg': case prefix+'removebg': case prefix+'remove-bg': {
+	if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+	if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+	if (/webp/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
+	let remobg = require('remove.bg')
+	let apirnobg = ['q61faXzzR5zNU6cvcrwtUkRU','S258diZhcuFJooAtHTaPEn4T','5LjfCVAp4vVNYiTjq9mXJWHF','aT7ibfUsGSwFyjaPZ9eoJc61','BY63t7Vx2tS68YZFY6AJ4HHF','5Gdq1sSWSeyZzPMHqz7ENfi8','86h6d6u4AXrst4BVMD9dzdGZ','xp8pSDavAgfE5XScqXo9UKHF','dWbCoCb3TacCP93imNEcPxcL']
+	let apinobg = apirnobg[Math.floor(Math.random() * apirnobg.length)]
+	hmm = await './src/remobg-'+getRandom('')
+	localFile = await sock.downloadAndSaveMediaMessage(quoted, hmm)
+	outputFile = await './src/hremo-'+getRandom('.png')
+	m.reply(mess.wait)
+	remobg.removeBackgroundFromImageFile({
+	  path: localFile,
+	  apiKey: apinobg,
+	  size: "regular",
+	  type: "auto",
+	  scale: "100%",
+	  outputFile 
+	}).then(async result => {
+	sock.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
+	await fs.unlinkSync(localFile)
+	await fs.unlinkSync(outputFile)
+	})
+	}
+	addCmd(command.slice(1), 1, commund)
+	break
 case prefix+'listpc': {
 if (isBan) return ads(mess.ban)
 let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v)
