@@ -1,6 +1,6 @@
 process.on('uncaughtException', console.error) //Safe Log Error
 /*-----[⬇️MODULE]-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-require("./pengaturanNyaByAriel")
+require("./Ariel-Sandy-Permana/pengaturanNyaByAriel.js")
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType, WAFlag } = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
