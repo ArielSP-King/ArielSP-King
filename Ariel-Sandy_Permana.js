@@ -1,4 +1,4 @@
-require("./pengaturanNyaByAriel.js")
+require("./Ariel-Sandy-Permana/pengaturanNyaByAriel.js")
 const { default: sockConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
