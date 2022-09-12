@@ -1,6 +1,6 @@
 process.on('uncaughtException', console.error) //Safe Log Error
 /*-----[⬇️MODULE]-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-require("../connect/config")
+require("./pengaturanNyaByAriel")
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType, WAFlag } = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
@@ -195,7 +195,7 @@ const isSewa = _sewa.checkSewaGroup(from, sewa)
 const groupMembers = m.isGroup ? groupMetadata.participants : ''
 const cmdBotTotal = require('util').inspect(hit.all)
 const cmdBotHarian = require('util').inspect(hit.today)
-const cekSes = await dbs.statDatabase(`./connect/${global.sessionName}.json`)
+const cekSes = await dbs.statDatabase(`./${global.sessionName}.json`)
 
 // Other
 const isBan = banUser.includes(m.sender)
@@ -1680,7 +1680,6 @@ case prefix+'arielkece2' : {
 let sections = []
 let listmenu = [`tesbang`,`arielkece`,`grupmenu`,`textpromenu`,`stickertelegram`,`nabimenu`,`convertmenu`,`searchmenu`,`downloadmenu`,`randomtext`,`stalkmenu`,`animemenu`,`funmenu`,`musikmenu`,`toolsmenu`,`ownermenu`,`othermenu`]
 let listmenuu = [`🇮🇩 Catalog Menu`,`🇮🇩 All Menu`,`🇮🇩 Group Menu`,`🇮🇩 Textpro Menu`,`🇮🇩 Sticker Menu`,`🇮🇩 Kisah Nabi Menu`,`🇮🇩 Convert Menu`,`🇮🇩 Search Menu`,`🇮🇩 Download Menu`,`🇮🇩 Random Text Menu`,`🇮🇩 Stalk Menu`,`🇮🇩 Anime Menu`,`🇮🇩 Fun Menu`,`🇮🇩 Sound Menu`,`🇮🇩 Tools Menu`,`🇮🇩 Owner Menu`,`🇮🇩 Other Menu`]
-let listmenuuu = [`Semua Menu Versi Canggih`,`Semua Menu Versi Canggih 2`,`Menampilkan Fitur Khusus Grup`,`Menampilkan Fitur Textpro Untuk Membuat Semacam logo`,`Menampilkan Fitur Sticker Telegram Dan Kamu Bisa Mengunduhnya`,`Menampilkan Menu Kisah Para Nabi`,`Menampilkan Fitur Convert Untuk Mengconvert media kamu`,`Menampilkan Fitur Musik Yang Tersedia Pada Bot`,`Menampilkan Fitur Download Melalui Link Media Yang Kamu Punya`,`Menampilkan List Menu Untuk Toko Anda`,`Menampilkan Fitur Random Text`,`Menampilkan Fitur Stalk Untuk Stalking Akun Game/Sosial Media Kamu`,`Menampilkan Fitur Anime Dan Kamu Dapat Mengunduhnya`,`Menampilkan Fitur Fun Untuk Bermain`,`Menampilkan Fitur Informasi`,`Menampilkan Tools Menu Untuk Alat Bantu Kamu`,`Menampilkan Fitur Yg Dibuat Khusus Untuk Developer`,`Menampilkan Menu Lainya`]
 let nombor = 1
 
 let startnum = 0
@@ -1690,7 +1689,7 @@ const yy = {title: `${global.author} ༺ ` + nombor++,
 rows: [
 {
 title: `${listmenuu[startnum++]}`,
-description: `${listmenuuu[startnumm++]}`,
+description: `${global.namebot[startnumm++]}`,
 rowId: `${prefix}${x}`
 }
 ]
@@ -4093,7 +4092,7 @@ for (let i of res) {
 teks += `\n\nName : ${i.name}\nCategory : ${i.category}\nDate : ${i.date}\nDesc : ${i.desc}\nLink : ${i.link}`
 }
 let buttons = [
-{buttonId: `menu`, buttonText: {displayText: 'Menu'}, type: 1}
+{buttonId: `#menu`, buttonText: {displayText: 'Menu'}, type: 1}
 ]
 let buttonMessage = {
 image: log0,
